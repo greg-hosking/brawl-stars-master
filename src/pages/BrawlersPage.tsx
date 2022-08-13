@@ -1,9 +1,10 @@
-import { useEffect, useRef, useState } from 'react';
-import { Image } from 'react-bootstrap';
+import React, { useEffect, useRef, useState } from 'react';
+import { Col, Container, Image, Row } from 'react-bootstrap';
 import { NavLink } from 'react-router-dom';
+import BrawlerCategory from '../components/brawlers/BrawlerCategory';
 import { Brawler } from '../interfaces/Brawler';
 
-function BrawlersPage() {
+const BrawlersPage: React.FunctionComponent = () => {
   const [brawlers, setBrawlers] = useState<Brawler[]>([]);
 
   const shouldFetch = useRef(true);
@@ -25,16 +26,22 @@ function BrawlersPage() {
 
   return (
     <>
-      <h1>BRAWLERS</h1>
-      {brawlers.map((brawler) => {
-        return (
-          <NavLink to={'./' + brawler.id}>
-            <h1>{brawler.name}</h1>
-          </NavLink>
-        );
-      })}
+      <Container className='p-sm-5'>
+        <Row className='content-container my-sm-4 p-4'>
+          <h1>BRAWLERS</h1>
+          {brawlers.map((brawler) => {
+            return (
+              <Col xs='auto' className='m-2'>
+                <NavLink to={'./' + brawler.id}>
+                  <Image src={brawler.imageUrl} height={100}></Image>
+                </NavLink>
+              </Col>
+            );
+          })}
+        </Row>
+      </Container>
     </>
   );
-}
+};
 
 export default BrawlersPage;
