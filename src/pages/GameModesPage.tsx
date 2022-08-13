@@ -1,11 +1,7 @@
+import React from 'react';
 
-function GameModesPage() {
-
-    return (
-        <>
-            <h1>GAME MODES</h1>
-        </>
-    )
-}
+const GameModesPage: React.FunctionComponent = () => {
+  return <h1>GAME MODES</h1>;
+};
 
 export default GameModesPage;

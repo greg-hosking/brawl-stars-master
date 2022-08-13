@@ -1,11 +1,7 @@
+import React from 'react';
 
-function EventsPage() {
-
-    return (
-        <>
-            <h1>EVENTS</h1>
-        </>
-    )
-}
+const EventsPage: React.FunctionComponent = () => {
+  return <h1>EVENTS</h1>;
+};
 
 export default EventsPage;
