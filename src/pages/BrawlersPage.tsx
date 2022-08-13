@@ -1,17 +1,10 @@
-import { useEffect, useRef, useState } from "react";
-
-function Brawler(props: any) {
-  return (
-    <>
-      <h3>{props.brawler.name}</h3>
-      {/* <p>{props.brawler.description}</p> */}
-    </>
-  );
-}
+import { useEffect, useRef, useState } from 'react';
+import { Image } from 'react-bootstrap';
+import { NavLink } from 'react-router-dom';
+import { Brawler } from '../interfaces/Brawler';
 
 function BrawlersPage() {
-
-  const [brawlers, setBrawlers] = useState<{}[]>([]);
+  const [brawlers, setBrawlers] = useState<Brawler[]>([]);
 
   const shouldFetch = useRef(true);
   useEffect(() => {
@@ -22,29 +15,23 @@ function BrawlersPage() {
           method: 'GET'
         });
         const jsonData = await data.json();
-        console.log(jsonData.list);
-        
-        jsonData.list.forEach((element: any) => {
-          console.log(element.name);
-          setBrawlers(_brawlers => [..._brawlers, element]);
-        });
+
+        setBrawlers(jsonData.list);
       }
-      
     };
-    
+
     fetchData();
   });
-  
-  
-  console.log(brawlers)
+
   return (
     <>
       <h1>BRAWLERS</h1>
-      <h2>There are: {brawlers.length} playable characters</h2>
-      {brawlers.map((element) => {
+      {brawlers.map((brawler) => {
         return (
-          <Brawler brawler={element} />
-        )
+          <NavLink to={'./' + brawler.id}>
+            <h1>{brawler.name}</h1>
+          </NavLink>
+        );
       })}
     </>
   );
