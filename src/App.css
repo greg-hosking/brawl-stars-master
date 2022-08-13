@@ -1,3 +1,8 @@
+* {
+  font-family: 'Lilita One';
+  -webkit-text-stroke: 1px black;
+}
+
 :root {
   --red: rgb(228, 31, 29);
   --yellow: rgb(236, 167, 29);
@@ -7,37 +12,60 @@
   --darkblue: rgb(13, 26, 50);
 }
 
-.clearfix::after {
-  content: '';
-  clear: both;
-  display: table;
+.app-container {
+  min-height: 100vh;
+  background: var(--darkblue);
 }
 
-* {
-  margin: 0;
-  padding: 0;
-  font-family: 'Lilita One';
-  -webkit-text-stroke: 1px black;
-}
-
-.navigation-bar {
+.navigation {
   background: var(--darkblue);
   border-bottom: 3px solid white;
-  color: white;
-  white-space: nowrap;
-  width: 100%
 }
 
-.navigation-bar h3 { 
+main {
+  background: var(--blue);
   color: white;
 }
+
+.content-container {
+  background: var(--darkblue);
+  border: 2px solid white;
+}
+
+/* Home */
+
+/* Brawlers */
+
+/* Brawler */
+
+.brawler-icon-sm {
+  height: 100px;
+}
+
+.brawler-icon-lg {
+  height: 200px;
+}
+
+.star-power-label {
+  color: var(--yellow);
+}
+
+.gadget-label {
+  color: var(--green);
+}
+
+/* Events */
+
+/* Game Modes */
 
 .footer {
   background: var(--darkblue);
+  border-top: 3px solid white;
   color: white;
   text-align: center;
 }
 
-.footer a, .footer a:hover {
+.footer a,
+.footer a:hover {
   color: var(--yellow);
 }
