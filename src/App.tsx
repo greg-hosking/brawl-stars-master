@@ -24,7 +24,7 @@ const App: React.FunctionComponent = () => {
           <Routes>
             <Route path='/' element={<HomePage />} />
             <Route path='/brawlers' element={<BrawlersPage />} />
-            <Route path='/brawlers/:id' element={<BrawlerPage />} />
+            <Route path='/brawlers/:brawlerID' element={<BrawlerPage />} />
             <Route path='/events' element={<EventsPage />} />
             <Route path='/gamemodes' element={<GameModesPage />} />
           </Routes>
