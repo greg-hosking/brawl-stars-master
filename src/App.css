@@ -38,14 +38,6 @@ main {
 
 /* Brawler */
 
-.brawler-icon-sm {
-  height: 100px;
-}
-
-.brawler-icon-lg {
-  height: 200px;
-}
-
 .star-power-label {
   color: var(--yellow);
 }

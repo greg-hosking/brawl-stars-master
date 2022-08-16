@@ -29,6 +29,7 @@ export interface Rarity {
   name: string;
   color: string;
 }
+
 export interface StarPower {
   id: number;
   name: string;
@@ -48,6 +49,7 @@ export interface Gadget {
   imageUrl: string;
   released: boolean;
 }
+
 export interface Video {
   type: number;
   name: string;

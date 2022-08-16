@@ -32,9 +32,13 @@ const BrawlerPage: React.FunctionComponent = () => {
         <>
           <Row className='content-container p-4 align-items-center'>
             <Col md='auto'>
-              <Image src={brawler.imageUrl} className='brawler-icon-lg' />
+              <Image
+                src={brawler.imageUrl}
+                height={200}
+                style={{ border: '2px solid' + brawler.rarity.color }}
+              />
             </Col>
-            <Col md>
+            <Col md className='py-3'>
               <Row>
                 <h2>{brawler.name.toUpperCase()}</h2>
               </Row>
@@ -75,50 +79,56 @@ const BrawlerPage: React.FunctionComponent = () => {
                 <h5>{brawler.description}</h5>
               </Row>
             </Col>
+            <Row>
+              <Col sm>
+                {brawler.starPowers.length > 0 && (
+                  <Row className='my-4'>
+                    {brawler.starPowers.length === 1 ? (
+                      <Row>
+                        <h3>STAR POWER</h3>
+                      </Row>
+                    ) : (
+                      <Row>
+                        <h3>STAR POWERS</h3>
+                      </Row>
+                    )}
+                    {brawler.starPowers.map((starPower) => {
+                      return (
+                        <StarPower key={starPower.id} starPower={starPower} />
+                      );
+                    })}
+                  </Row>
+                )}
+              </Col>
+              <Col sm>
+                {brawler.gadgets.length > 0 && (
+                  <Row className='my-4'>
+                    {brawler.gadgets.length === 1 ? (
+                      <Row>
+                        <h3>GADGET</h3>
+                      </Row>
+                    ) : (
+                      <Row>
+                        <h3>GADGETS</h3>
+                      </Row>
+                    )}
+                    {brawler.gadgets.map((gadget) => {
+                      return <Gadget key={gadget.id} gadget={gadget} />;
+                    })}
+                  </Row>
+                )}
+              </Col>
+            </Row>
           </Row>
-          {brawler.starPowers.length > 0 && (
-            <Row className='content-container my-sm-4 p-4 align-items-center'>
-              {brawler.starPowers.length === 1 ? (
-                <Row>
-                  <h3>STAR POWER</h3>
-                </Row>
-              ) : (
-                <Row>
-                  <h3>STAR POWERS</h3>
-                </Row>
-              )}
-              {brawler.starPowers.map((starPower) => {
-                return <StarPower starPower={starPower} />;
-              })}
-            </Row>
-          )}
-          {brawler.gadgets.length > 0 && (
-            <Row className='content-container my-sm-4 p-4 align-items-center'>
-              {brawler.gadgets.length === 1 ? (
-                <Row>
-                  <h3>GADGET</h3>
-                </Row>
-              ) : (
-                <Row>
-                  <h3>GADGETS</h3>
-                </Row>
-              )}
-              {brawler.gadgets.map((gadget) => {
-                return <Gadget gadget={gadget} />;
-              })}
-            </Row>
-          )}
         </>
       ) : (
-        <>
-          <Row className='py-5'>
-            <Spinner
-              animation='border'
-              role='status'
-              className='mx-auto'
-            ></Spinner>
-          </Row>
-        </>
+        <Row className='py-5'>
+          <Spinner
+            animation='border'
+            role='status'
+            className='mx-auto'
+          ></Spinner>
+        </Row>
       )}
     </Container>
   );

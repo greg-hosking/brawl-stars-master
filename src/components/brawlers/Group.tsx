@@ -1,21 +1,45 @@
 import React from 'react';
-import { Row } from 'react-bootstrap';
+import { Col, Image, Row } from 'react-bootstrap';
+import { NavLink } from 'react-router-dom';
+import * as Types from '../../util/Types';
 
-interface Props {}
-
-// function isRarity(object: any): object is Rarity {
-//   return 'id' in object && 'name' in object && 'color' in object;
-// }
+interface Props {
+  group: Types.Group;
+}
 
 const Group: React.FunctionComponent<Props> = (props) => {
   return (
-    <Row className='content-container my-sm-4 p-4'>
-      {/* {isRarity(props.type) ? (
-        <h1 style={{ color: props.type.color }}>{props.type.name}</h1>
-      ) : (
-        <h1>{props.type.name}</h1>
-      )} */}
-    </Row>
+    <>
+      <Row>
+        {'color' in props.group.type ? (
+          <h3 style={{ color: props.group.type.color }}>
+            {props.group.type.name.toUpperCase()}
+          </h3>
+        ) : (
+          <h3>{props.group.type.name.toUpperCase()}</h3>
+        )}
+      </Row>
+      <Row className='mb-2'>
+        {props.group.brawlers.map((brawler) => {
+          return (
+            <Col key={brawler.id} xs='auto' className='p-1'>
+              <NavLink to={'./' + brawler.id}>
+                <Image
+                  src={brawler.imageUrl}
+                  height={100}
+                  title={
+                    'Click to view more information about ' + brawler.name + '.'
+                  }
+                  style={{
+                    border: '1px solid' + brawler.rarity.color
+                  }}
+                ></Image>
+              </NavLink>
+            </Col>
+          );
+        })}
+      </Row>
+    </>
   );
 };
 
