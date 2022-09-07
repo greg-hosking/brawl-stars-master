@@ -1,6 +1,5 @@
 * {
   font-family: 'Lilita One';
-  -webkit-text-stroke: 1px black;
 }
 
 :root {
@@ -20,6 +19,7 @@
 .navigation {
   background: var(--darkblue);
   border-bottom: 3px solid white;
+  white-space: nowrap;
 }
 
 main {
@@ -32,12 +32,13 @@ main {
   border: 2px solid white;
 }
 
-/* Home */
+.dropdown-menu {
+  width: 100%;
+}
 
-/* Brawlers */
-
-/* Brawler */
-
+.brawler-portrait:hover {
+  border-width: 5px !important;
+}
 .star-power-label {
   color: var(--yellow);
 }
@@ -45,10 +46,6 @@ main {
 .gadget-label {
   color: var(--green);
 }
-
-/* Events */
-
-/* Game Modes */
 
 .footer {
   background: var(--darkblue);
