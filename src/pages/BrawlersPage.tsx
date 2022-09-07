@@ -90,12 +90,12 @@ const BrawlersPage: React.FunctionComponent = () => {
         <>
           <Row className='content-container p-4'>
             <Col md>
-              <h2 style={{ marginBottom: '0px' }}>BRAWLERS</h2>
+              <h3 style={{ marginBottom: '0px' }}>BRAWLERS</h3>
             </Col>
             <Col md>
               <Row className='justify-content-md-end align-items-center'>
                 <Col xs='auto'>
-                  <h4 style={{ marginBottom: '0px' }}>GROUP BY</h4>
+                  <h5 style={{ marginBottom: '0px' }}>GROUP BY</h5>
                 </Col>
                 <Col xs='auto'>
                   <Form.Select
@@ -119,9 +119,9 @@ const BrawlersPage: React.FunctionComponent = () => {
           <Row className='content-container my-sm-4 p-4'>
             {getBrawlerGroups(groupBy, brawlers).map((group) => {
               return (
-                <>
+                <div key={group.category.name}>
                   <Row className=''>
-                    <h3
+                    <h4
                       style={{
                         color:
                           'color' in group.category
@@ -131,16 +131,16 @@ const BrawlersPage: React.FunctionComponent = () => {
                       }}
                     >
                       {group.category.name.toUpperCase()}
-                    </h3>
+                    </h4>
                   </Row>
-                  <Row className='px-3 pb-3'>
+                  <Row className='px-2 pb-3'>
                     {group.brawlers.map((brawler) => {
                       return (
                         <Col key={brawler.id} xs='auto' className='p-1'>
                           <NavLink to={'./' + brawler.id}>
                             <Image
-                              src={brawler.imageUrl}
-                              height={100}
+                              src={brawler.imageUrl2}
+                              height={80}
                               title={
                                 'Click to view more information about ' +
                                 brawler.name +
@@ -148,7 +148,7 @@ const BrawlersPage: React.FunctionComponent = () => {
                               }
                               className='brawler-portrait'
                               style={{
-                                border: '0px solid' + brawler.rarity.color
+                                border: '0px solid ' + brawler.rarity.color
                               }}
                             />
                           </NavLink>
@@ -156,7 +156,7 @@ const BrawlersPage: React.FunctionComponent = () => {
                       );
                     })}
                   </Row>
-                </>
+                </div>
               );
             })}
           </Row>

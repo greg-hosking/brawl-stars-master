@@ -33,7 +33,7 @@ const BrawlerPage: React.FunctionComponent = () => {
           <Row className='content-container p-4 align-items-center'>
             <Col md='auto'>
               <Image
-                src={brawler.imageUrl}
+                src={brawler.imageUrl2}
                 height={200}
                 style={{ border: '2px solid' + brawler.rarity.color }}
               />
