@@ -1,4 +1,5 @@
 import React from 'react';
+import { Container } from 'react-bootstrap';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import './App.css';
 import 'bootstrap/dist/css/bootstrap.css';
@@ -11,7 +12,7 @@ import BrawlersPage from './pages/BrawlersPage';
 import BrawlerPage from './pages/BrawlerPage';
 import EventsPage from './pages/EventsPage';
 import GameModesPage from './pages/GameModesPage';
-import { Container } from 'react-bootstrap';
+import LeaderboardPage from './pages/LeaderboardPage';
 
 const App: React.FunctionComponent = () => {
   return (
@@ -23,10 +24,18 @@ const App: React.FunctionComponent = () => {
         <main>
           <Routes>
             <Route path='/' element={<HomePage />} />
+            <Route path='/events' element={<EventsPage />} />
             <Route path='/brawlers' element={<BrawlersPage />} />
             <Route path='/brawlers/:brawlerID' element={<BrawlerPage />} />
-            <Route path='/events' element={<EventsPage />} />
             <Route path='/gamemodes' element={<GameModesPage />} />
+            <Route
+              path='leaderboards/:leaderboard'
+              element={<LeaderboardPage />}
+            />
+            <Route
+              path='/leaderboards/brawlers/:brawlerID'
+              element={<LeaderboardPage />}
+            />
           </Routes>
         </main>
         <Footer />
