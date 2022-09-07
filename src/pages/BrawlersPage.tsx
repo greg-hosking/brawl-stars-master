@@ -1,27 +1,37 @@
 import React, { useEffect, useRef, useState } from 'react';
-import { Col, Container, Form, Row, Spinner } from 'react-bootstrap';
+import { Col, Container, Form, Image, Row, Spinner } from 'react-bootstrap';
 
 import * as Types from '../util/Types';
-import Group from '../components/brawlers/Group';
+import { NavLink } from 'react-router-dom';
 
-enum Type {
+enum GroupBy {
   CLASS,
   RARITY
 }
 
-const getGroups = (type: Type, brawlers: Types.Brawler[]): Types.Group[] => {
-  const groups: Types.Group[] = [];
+interface Group {
+  category: Types.Class | Types.Rarity;
+  brawlers: Types.Brawler[];
+}
 
+const getBrawlerGroups = (
+  groupBy: GroupBy,
+  brawlers: Types.Brawler[]
+): Group[] => {
+  const groups: Group[] = [];
+
+  // Add each brawler to the group they belong to if it exists,
+  // otherwise create a new group and add them to it.
   brawlers.forEach((brawler) => {
     const foundIndex = groups.findIndex((group) => {
-      if (type === Type.CLASS) {
-        return group.type.id === brawler.class.id;
-      }
-      return group.type.id === brawler.rarity.id;
+      return (
+        (groupBy === GroupBy.CLASS && brawler.class.id === group.category.id) ||
+        (groupBy === GroupBy.RARITY && brawler.rarity.id === group.category.id)
+      );
     });
     if (foundIndex === -1) {
-      const newGroup: Types.Group = {
-        type: type === Type.CLASS ? brawler.class : brawler.rarity,
+      const newGroup: Group = {
+        category: groupBy === GroupBy.CLASS ? brawler.class : brawler.rarity,
         brawlers: [brawler]
       };
       groups.push(newGroup);
@@ -30,12 +40,14 @@ const getGroups = (type: Type, brawlers: Types.Brawler[]): Types.Group[] => {
     }
   });
 
-  groups.sort((group1, group2) => {
-    return group1.type.id - group2.type.id;
+  // Sort the groups in ascending order by category ID,
+  // then sort the brawlers within each group in ascending order by ID.
+  groups.sort((a, b) => {
+    return a.category.id - b.category.id;
   });
   groups.forEach((group) => {
-    group.brawlers.sort((brawler1, brawler2) => {
-      return brawler1.id - brawler2.id;
+    group.brawlers.sort((a, b) => {
+      return a.id - b.id;
     });
   });
 
@@ -44,25 +56,31 @@ const getGroups = (type: Type, brawlers: Types.Brawler[]): Types.Group[] => {
 
 const BrawlersPage: React.FunctionComponent = () => {
   const [brawlers, setBrawlers] = useState<Types.Brawler[]>([]);
-  const [selectedType, setSelectedType] = useState<Type>(Type.RARITY);
+  const [groupBy, setGroupBy] = useState<GroupBy>(GroupBy.RARITY);
 
   const shouldFetch = useRef(true);
   useEffect(() => {
-    const fetchBrawlersData = async () => {
-      if (shouldFetch.current) {
-        shouldFetch.current = false;
-        fetch('https://api.brawlapi.com/v1/brawlers')
-          .then((response) => response.json())
-          .then((result) => setBrawlers(result.list));
+    const fetchBrawlers = async () => {
+      fetch('https://api.brawlapi.com/v1/brawlers')
+        .then((response) => response.json())
+        .then((json) => setBrawlers(json.list));
+    };
+    // For a better user experience, store the last selected value from the
+    // 'Group By' dropdown menu, with a default value of GroupBy.RARITY if
+    // this is the first time using this page.
+    const fetchGroupBy = () => {
+      const storedGroupBy = sessionStorage.getItem('/brawlers?groupBy=');
+      if (storedGroupBy === null) {
+        sessionStorage.setItem('/brawlers?groupBy=', groupBy.toString());
+      } else {
+        setGroupBy(+storedGroupBy);
       }
     };
 
-    fetchBrawlersData();
-    const storedType = sessionStorage.getItem('selectedType');
-    if (storedType === null) {
-      sessionStorage.setItem('selectedType', selectedType.toString());
-    } else {
-      setSelectedType(+storedType);
+    if (shouldFetch.current) {
+      shouldFetch.current = false;
+      fetchBrawlers();
+      fetchGroupBy();
     }
   });
 
@@ -72,35 +90,74 @@ const BrawlersPage: React.FunctionComponent = () => {
         <>
           <Row className='content-container p-4'>
             <Col md>
-              <h2>BRAWLERS</h2>
+              <h2 style={{ marginBottom: '0px' }}>BRAWLERS</h2>
             </Col>
             <Col md>
-              <Row className='justify-content-md-end'>
+              <Row className='justify-content-md-end align-items-center'>
                 <Col xs='auto'>
-                  <h2>GROUP BY</h2>
+                  <h4 style={{ marginBottom: '0px' }}>GROUP BY</h4>
                 </Col>
                 <Col xs='auto'>
                   <Form.Select
-                    defaultValue={selectedType}
+                    defaultValue={groupBy}
                     onChange={(event) => {
-                      setSelectedType(+event.target.value);
                       sessionStorage.setItem(
-                        'selectedType',
+                        '/brawlers?groupBy=',
                         event.target.value
                       );
+                      setGroupBy(+event.target.value);
                     }}
                     style={{ WebkitTextStrokeWidth: '0px' }}
                   >
-                    <option value={Type.CLASS}>CLASS</option>
-                    <option value={Type.RARITY}>RARITY</option>
+                    <option value={GroupBy.CLASS}>CLASS</option>
+                    <option value={GroupBy.RARITY}>RARITY</option>
                   </Form.Select>
                 </Col>
               </Row>
             </Col>
           </Row>
           <Row className='content-container my-sm-4 p-4'>
-            {getGroups(selectedType, brawlers).map((group) => {
-              return <Group key={group.type.name} group={group} />;
+            {getBrawlerGroups(groupBy, brawlers).map((group) => {
+              return (
+                <>
+                  <Row className=''>
+                    <h3
+                      style={{
+                        color:
+                          'color' in group.category
+                            ? group.category.color
+                            : 'white',
+                        marginBottom: 0
+                      }}
+                    >
+                      {group.category.name.toUpperCase()}
+                    </h3>
+                  </Row>
+                  <Row className='px-3 pb-3'>
+                    {group.brawlers.map((brawler) => {
+                      return (
+                        <Col key={brawler.id} xs='auto' className='p-1'>
+                          <NavLink to={'./' + brawler.id}>
+                            <Image
+                              src={brawler.imageUrl}
+                              height={100}
+                              title={
+                                'Click to view more information about ' +
+                                brawler.name +
+                                '.'
+                              }
+                              className='brawler-portrait'
+                              style={{
+                                border: '0px solid' + brawler.rarity.color
+                              }}
+                            />
+                          </NavLink>
+                        </Col>
+                      );
+                    })}
+                  </Row>
+                </>
+              );
             })}
           </Row>
         </>
