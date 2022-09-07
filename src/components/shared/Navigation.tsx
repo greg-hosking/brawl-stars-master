@@ -1,12 +1,11 @@
 import React from 'react';
-
-import { Navbar, Nav, Container, Image } from 'react-bootstrap';
+import { Container, Image, Nav, Navbar, NavDropdown } from 'react-bootstrap';
 import { NavLink } from 'react-router-dom';
 
 const Navigation: React.FunctionComponent = () => {
   return (
     <div className='navigation'>
-      <Navbar variant='dark' bg='transparent' expand='sm' sticky='top'>
+      <Navbar variant='dark' bg='transparent' expand='md' sticky='top'>
         <Container>
           <Navbar.Brand as={NavLink} to='/'>
             <Image
@@ -17,19 +16,30 @@ const Navigation: React.FunctionComponent = () => {
           </Navbar.Brand>
           <Navbar.Toggle aria-controls='navbar'></Navbar.Toggle>
           <Navbar.Collapse id='navbar'>
-            <Nav fill style={{ width: '100%' }}>
-              <Nav.Link as={NavLink} to='/' className='d-sm-none d-md-block'>
-                <h3>HOME</h3>
-              </Nav.Link>
-              <Nav.Link as={NavLink} to='/brawlers'>
-                <h3>BRAWLERS</h3>
+            <Nav fill className='w-100'>
+              <Nav.Link as={NavLink} to='/' className='d-none d-lg-block'>
+                <h4>HOME</h4>
               </Nav.Link>
               <Nav.Link as={NavLink} to='/events'>
-                <h3>EVENTS</h3>
+                <h4>EVENTS</h4>
+              </Nav.Link>
+              <Nav.Link as={NavLink} to='/brawlers'>
+                <h4>BRAWLERS</h4>
               </Nav.Link>
               <Nav.Link as={NavLink} to='/gamemodes'>
-                <h3>GAME MODES</h3>
+                <h4>GAME MODES</h4>
               </Nav.Link>
+              <NavDropdown title='LEADERBOARDS' className='h4'>
+                <NavDropdown.Item as={NavLink} to='/leaderboards/players'>
+                  PLAYERS
+                </NavDropdown.Item>
+                <NavDropdown.Item as={NavLink} to='/leaderboards/clubs'>
+                  CLUBS
+                </NavDropdown.Item>
+                <NavDropdown.Item as={NavLink} to='/leaderboards/brawlers'>
+                  BRAWLERS
+                </NavDropdown.Item>
+              </NavDropdown>
             </Nav>
           </Navbar.Collapse>
         </Container>
