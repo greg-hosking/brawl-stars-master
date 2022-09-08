@@ -39,6 +39,7 @@ main {
 .brawler-portrait:hover {
   border-width: 5px !important;
 }
+
 .star-power-label {
   color: var(--yellow);
 }

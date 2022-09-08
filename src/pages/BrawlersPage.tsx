@@ -84,20 +84,31 @@ const BrawlersPage: React.FunctionComponent = () => {
     }
   });
 
+  // Split the brawler groups into rows of two groups each for later rendering.
+  const brawlerGroups2D: Group[][] = [];
+  getBrawlerGroups(groupBy, brawlers).forEach((group, index) => {
+    if (index % 2 === 0) {
+      brawlerGroups2D.push([group]);
+    } else {
+      brawlerGroups2D[brawlerGroups2D.length - 1].push(group);
+    }
+  });
+
   return (
     <Container className='p-sm-5'>
       {brawlers.length > 0 ? (
         <>
           <Row className='content-container p-4'>
             <Col md>
-              <h3 style={{ marginBottom: '0px' }}>BRAWLERS</h3>
+              <h3 className='mt-1'>BRAWLERS</h3>
             </Col>
             <Col md>
-              <Row className='justify-content-md-end align-items-center'>
-                <Col xs='auto'>
-                  <h5 style={{ marginBottom: '0px' }}>GROUP BY</h5>
+              <Row>
+                <Col md={2} lg={4} xl={6}></Col>
+                <Col xs md='auto'>
+                  <h5 className='mt-2'>GROUP BY</h5>
                 </Col>
-                <Col xs='auto'>
+                <Col xs>
                   <Form.Select
                     defaultValue={groupBy}
                     onChange={(event) => {
@@ -107,7 +118,6 @@ const BrawlersPage: React.FunctionComponent = () => {
                       );
                       setGroupBy(+event.target.value);
                     }}
-                    style={{ WebkitTextStrokeWidth: '0px' }}
                   >
                     <option value={GroupBy.CLASS}>CLASS</option>
                     <option value={GroupBy.RARITY}>RARITY</option>
@@ -117,46 +127,53 @@ const BrawlersPage: React.FunctionComponent = () => {
             </Col>
           </Row>
           <Row className='content-container my-sm-4 p-4'>
-            {getBrawlerGroups(groupBy, brawlers).map((group) => {
+            {brawlerGroups2D.map((row) => {
               return (
-                <div key={group.category.name}>
-                  <Row className=''>
-                    <h4
-                      style={{
-                        color:
-                          'color' in group.category
-                            ? group.category.color
-                            : 'white',
-                        marginBottom: 0
-                      }}
-                    >
-                      {group.category.name.toUpperCase()}
-                    </h4>
-                  </Row>
-                  <Row className='px-2 pb-3'>
-                    {group.brawlers.map((brawler) => {
-                      return (
-                        <Col key={brawler.id} xs='auto' className='p-1'>
-                          <NavLink to={'./' + brawler.id}>
-                            <Image
-                              src={brawler.imageUrl2}
-                              height={80}
-                              title={
-                                'Click to view more information about ' +
-                                brawler.name +
-                                '.'
-                              }
-                              className='brawler-portrait'
-                              style={{
-                                border: '0px solid ' + brawler.rarity.color
-                              }}
-                            />
-                          </NavLink>
-                        </Col>
-                      );
-                    })}
-                  </Row>
-                </div>
+                <Row>
+                  {row.map((group) => {
+                    return (
+                      <Col md>
+                        <Row className=''>
+                          <h4
+                            style={{
+                              color:
+                                'color' in group.category
+                                  ? group.category.color
+                                  : 'white',
+                              marginBottom: 0
+                            }}
+                          >
+                            {group.category.name.toUpperCase()}
+                          </h4>
+                        </Row>
+                        <Row className='px-2 pb-3'>
+                          {group.brawlers.map((brawler) => {
+                            return (
+                              <Col key={brawler.id} xs='auto' className='p-1'>
+                                <NavLink to={'./' + brawler.id}>
+                                  <Image
+                                    src={brawler.imageUrl2}
+                                    height={80}
+                                    title={
+                                      'Click to view more information about ' +
+                                      brawler.name +
+                                      '.'
+                                    }
+                                    className='brawler-portrait'
+                                    style={{
+                                      border:
+                                        '0px solid ' + brawler.rarity.color
+                                    }}
+                                  />
+                                </NavLink>
+                              </Col>
+                            );
+                          })}
+                        </Row>
+                      </Col>
+                    );
+                  })}
+                </Row>
               );
             })}
           </Row>

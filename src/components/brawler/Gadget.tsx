@@ -14,17 +14,21 @@ const Gadget: React.FunctionComponent<Props> = (props) => {
     <>
       <Row className='align-items-center mb-2'>
         <Col md='auto'>
-          <div style={{ position: 'relative' }}>
-            <Image
-              src='https://cdn.brawlify.com/gadgets/Background.png'
-              height={100}
-            ></Image>
+          <div
+            style={{
+              background:
+                'url(https://cdn.brawlify.com/gadgets/Background.png) center no-repeat',
+              backgroundSize: 'contain',
+              height: 100,
+              lineHeight: 6,
+              textAlign: 'center',
+              width: 100
+            }}
+          >
             <Image
               src={props.gadget.imageUrl}
-              width={40}
-              height={40}
-              style={{ position: 'absolute', top: 30, left: 27 }}
-            ></Image>
+              style={{ height: '40px', verticalAlign: 'middle', width: '40px' }}
+            />
           </div>
         </Col>
         <Col md>
