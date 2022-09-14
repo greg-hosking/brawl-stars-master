@@ -1,6 +1,6 @@
 import React from 'react';
 import { Container } from 'react-bootstrap';
-import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import { HashRouter, Route, Routes } from 'react-router-dom';
 import './App.css';
 import 'bootstrap/dist/css/bootstrap.css';
 
@@ -17,7 +17,7 @@ import LeaderboardPage from './pages/LeaderboardPage';
 const App: React.FunctionComponent = () => {
   return (
     <Container fluid className='app-container p-0'>
-      <BrowserRouter>
+      <HashRouter>
         <header>
           <Navigation />
         </header>
@@ -48,7 +48,7 @@ const App: React.FunctionComponent = () => {
           </Routes>
         </main>
         <Footer />
-      </BrowserRouter>
+      </HashRouter>
     </Container>
   );
 };
