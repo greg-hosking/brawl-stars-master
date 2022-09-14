@@ -20,23 +20,32 @@ const Navigation: React.FunctionComponent = () => {
               <Nav.Link as={NavLink} to='/' className='d-none d-lg-block'>
                 <h4>HOME</h4>
               </Nav.Link>
-              <Nav.Link as={NavLink} to='/events'>
+              <Nav.Link as={NavLink} to='/brawl-stars-react/events'>
                 <h4>EVENTS</h4>
               </Nav.Link>
-              <Nav.Link as={NavLink} to='/brawlers'>
+              <Nav.Link as={NavLink} to='/brawl-stars-react/brawlers'>
                 <h4>BRAWLERS</h4>
               </Nav.Link>
-              <Nav.Link as={NavLink} to='/gamemodes'>
+              <Nav.Link as={NavLink} to='/brawl-stars-react/gamemodes'>
                 <h4>GAME MODES</h4>
               </Nav.Link>
               <NavDropdown title='LEADERBOARDS' className='h4'>
-                <NavDropdown.Item as={NavLink} to='/leaderboards/players'>
+                <NavDropdown.Item
+                  as={NavLink}
+                  to='/brawl-stars-react/leaderboards/players'
+                >
                   PLAYERS
                 </NavDropdown.Item>
-                <NavDropdown.Item as={NavLink} to='/leaderboards/clubs'>
+                <NavDropdown.Item
+                  as={NavLink}
+                  to='/brawl-stars-react/leaderboards/clubs'
+                >
                   CLUBS
                 </NavDropdown.Item>
-                <NavDropdown.Item as={NavLink} to='/leaderboards/brawlers'>
+                <NavDropdown.Item
+                  as={NavLink}
+                  to='/brawl-stars-react/leaderboards/brawlers'
+                >
                   BRAWLERS
                 </NavDropdown.Item>
               </NavDropdown>

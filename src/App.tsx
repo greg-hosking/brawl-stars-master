@@ -23,17 +23,26 @@ const App: React.FunctionComponent = () => {
         </header>
         <main>
           <Routes>
-            <Route path='/' element={<HomePage />} />
-            <Route path='/events' element={<EventsPage />} />
-            <Route path='/brawlers' element={<BrawlersPage />} />
-            <Route path='/brawlers/:brawlerID' element={<BrawlerPage />} />
-            <Route path='/gamemodes' element={<GameModesPage />} />
+            <Route path='/brawl-stars-react/' element={<HomePage />} />
+            <Route path='/brawl-stars-react/events' element={<EventsPage />} />
             <Route
-              path='leaderboards/:leaderboard'
+              path='/brawl-stars-react/brawlers'
+              element={<BrawlersPage />}
+            />
+            <Route
+              path='/brawl-stars-react/brawlers/:brawlerID'
+              element={<BrawlerPage />}
+            />
+            <Route
+              path='/brawl-stars-react/gamemodes'
+              element={<GameModesPage />}
+            />
+            <Route
+              path='/brawl-stars-react/leaderboards/:leaderboard'
               element={<LeaderboardPage />}
             />
             <Route
-              path='/leaderboards/brawlers/:brawlerID'
+              path='/brawl-stars-react/leaderboards/brawlers/:brawlerID'
               element={<LeaderboardPage />}
             />
           </Routes>
