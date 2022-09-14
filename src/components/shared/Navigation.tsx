@@ -7,7 +7,7 @@ const Navigation: React.FunctionComponent = () => {
     <div className='navigation'>
       <Navbar variant='dark' bg='transparent' expand='md' sticky='top'>
         <Container>
-          <Navbar.Brand as={NavLink} to='/'>
+          <Navbar.Brand as={NavLink} to='/brawl-stars-react/'>
             <Image
               src='https://cdn.brawlify.com/gamemode/Hunters.png'
               alt='Brawl Stars Companion logo'
@@ -17,7 +17,11 @@ const Navigation: React.FunctionComponent = () => {
           <Navbar.Toggle aria-controls='navbar'></Navbar.Toggle>
           <Navbar.Collapse id='navbar'>
             <Nav fill className='w-100'>
-              <Nav.Link as={NavLink} to='/' className='d-none d-lg-block'>
+              <Nav.Link
+                as={NavLink}
+                to='/brawl-stars-react/'
+                className='d-none d-lg-block'
+              >
                 <h4>HOME</h4>
               </Nav.Link>
               <Nav.Link as={NavLink} to='/brawl-stars-react/events'>
