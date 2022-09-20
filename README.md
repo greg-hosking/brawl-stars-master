@@ -9,14 +9,15 @@
 <!-- PROJECT LOGO -->
 <br />
 <div align="center">
+<!--
   <a href="https://github.com/greg-hosking/brawl-stars-master">
     <img src="images/logo.webp" alt="Logo" width="80" height="80">
   </a>
-
-  <h3 align="center">Brawl Stars Master API</h3>
+-->
+  <h3 align="center">Brawl Stars Master</h3>
   
   <p align="center">
-    ...!
+    ...
     <br />
     <br />
     <a href="https://github.com/greg-hosking/brawl-stars-master/issues">Report Bug</a>
@@ -79,7 +80,7 @@
 
 - [ ] 
 
-See the [open issues](https://github.com/greg-hosking/brawl-stars-master-api/issues) for a full list of proposed features (and known issues).
+See the [open issues](https://github.com/greg-hosking/brawl-stars-master/issues) for a full list of proposed features (and known issues).
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
@@ -90,7 +91,7 @@ See the [open issues](https://github.com/greg-hosking/brawl-stars-master-api/iss
 
 Greg Hosking - hoskinggregory@gmail.com
 
-<!-- Project Link: [https://github.com/greg-hosking/brawl-stars-master-api](https://github.com/greg-hosking/brawl-stars-master-api) -->
+<!-- Project Link: [https://github.com/greg-hosking/brawl-stars-master](https://github.com/greg-hosking/brawl-stars-master) -->
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
@@ -98,13 +99,13 @@ Greg Hosking - hoskinggregory@gmail.com
 
 <!-- MARKDOWN LINKS & IMAGES -->
 <!-- https://www.markdownguide.org/basic-syntax/#reference-style-links -->
-[contributors-shield]: https://img.shields.io/github/contributors/greg-hosking/brawl-stars-master-api.svg?style=for-the-badge
-[contributors-url]: https://github.com/greg-hosking/brawl-stars-master-api/graphs/contributors
-[forks-shield]: https://img.shields.io/github/forks/greg-hosking/brawl-stars-master-api.svg?style=for-the-badge
-[forks-url]: https://github.com/greg-hosking/brawl-stars-master-api/network/members
-[stars-shield]: https://img.shields.io/github/stars/greg-hosking/brawl-stars-master-api.svg?style=for-the-badge
-[stars-url]: https://github.com/greg-hosking/brawl-stars-master-api/stargazers
-[issues-shield]: https://img.shields.io/github/issues/greg-hosking/brawl-stars-master-api.svg?style=for-the-badge
-[issues-url]: https://github.com/greg-hosking/brawl-stars-master-api/issues
+[contributors-shield]: https://img.shields.io/github/contributors/greg-hosking/brawl-stars-master.svg?style=for-the-badge
+[contributors-url]: https://github.com/greg-hosking/brawl-stars-master/graphs/contributors
+[forks-shield]: https://img.shields.io/github/forks/greg-hosking/brawl-stars-master.svg?style=for-the-badge
+[forks-url]: https://github.com/greg-hosking/brawl-stars-master/network/members
+[stars-shield]: https://img.shields.io/github/stars/greg-hosking/brawl-stars-master.svg?style=for-the-badge
+[stars-url]: https://github.com/greg-hosking/brawl-stars-master/stargazers
+[issues-shield]: https://img.shields.io/github/issues/greg-hosking/brawl-stars-master.svg?style=for-the-badge
+[issues-url]: https://github.com/greg-hosking/brawl-stars-master/issues
 [linkedin-shield]: https://img.shields.io/badge/-LinkedIn-black.svg?style=for-the-badge&logo=linkedin&colorB=555
 [linkedin-url]: https://linkedin.com/in/greg-hosking
